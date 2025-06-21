@@ -33,8 +33,14 @@ async function createUsernamePost(req, res) {
   res.redirect("/");
 }
 
+async function deleteAllUsers(req, res) {
+  await db.deleteAllUsers();
+  res.redirect("/");
+}
+
 module.exports = {
   getUsernames,
   newFormGet,
   createUsernamePost,
+  deleteAllUsers
 };
