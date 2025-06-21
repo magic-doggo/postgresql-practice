@@ -5,11 +5,17 @@ async function getAllUsernames() {
   return rows;
 }
 
+async function getSpecificUsernames(queryParam) {
+  const {rows } = await pool.query("SELECT username FROM usernames where username LIKE ($1) ", [queryParam]);
+  return rows; 
+}
+
 async function insertUsername(username) {
   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
 }
 
 module.exports = {
   getAllUsernames,
-  insertUsername
+  insertUsername,
+  getSpecificUsernames
 };
